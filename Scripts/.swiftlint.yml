@@ -1,0 +1,2 @@
+force_cast: # From https://realm.github.io/SwiftLint/force_cast.html
+  error # 강제 캐스팅은 error에서 warning으로 변경

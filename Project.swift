@@ -15,6 +15,12 @@ let project = Project(
             ),
             sources: ["TuistTemplateV1/Sources/**"],
             resources: ["TuistTemplateV1/Resources/**"],
+            scripts: [
+                TargetScript.pre(
+                path: Path.relativeToRoot("Scripts/SwiftLintRunScript.sh"),
+                name: "SwiftLint",
+                basedOnDependencyAnalysis: false)
+                      ],
             dependencies: []
         ),
         .target(
