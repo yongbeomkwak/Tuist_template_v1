@@ -1,7 +1,7 @@
 import ProjectDescription
 
 let config = Config(
-    plugins: [
+    plugins: [        .local(path: .relativeToRoot("Plugin/EnvironmentPlugin")),
         .local(path: .relativeToRoot("Plugin/TemplatePlugin")),
     ],
     generationOptions: .options()
