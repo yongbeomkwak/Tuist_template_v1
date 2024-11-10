@@ -8,6 +8,9 @@ generate:
 setup:
 	sh Scripts/Setup.sh
 
+tp:
+	swift Scripts/generatePlugin.swift
+
 clean:
 	rm -rf **/*.xcodeproj
 	rm -rf *.xcworkspace
