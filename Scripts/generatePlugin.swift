@@ -34,26 +34,39 @@ func updateFileContent(
 ) {
     let fileURL = URL(fileURLWithPath: filePath)
     
-    guard let readHandle = try? FileHandle(forReadingFrom: fileURL) else {
-        fatalError("❌ Failed to find \(filePath)")
+    do {
+        var fileString = try String(contentsOf: fileURL, encoding: .utf8)
+        if let range = fileString.range(of: findingString)?.upperBound {
+            fileString.insert(contentsOf: insertString, at: range)
+        } else {
+            fileString.append(insertString)
+        }
+        try fileString.write(to: fileURL, atomically: true, encoding: .utf8)
+    } catch {
+        print("❌ Error: \(error)")
     }
-    guard let readData = try? readHandle.readToEnd() else {
-        fatalError("❌ Failed to find \(filePath)")
-    }
-    try? readHandle.close()
-
-    guard var fileString = String(data: readData, encoding: .utf8) else {
-        fatalError("❌Casting Failed readData to String")
-    }
-    fileString.insert(contentsOf: insertString, at: fileString.range(of: findingString)?.upperBound ?? fileString.endIndex)
-
-    guard let writeHandle = try? FileHandle(forWritingTo: fileURL) else {
-        fatalError("❌ Failed to find \(filePath)")
-    }
+    // let fileURL = URL(fileURLWithPath: filePath)
     
-    writeHandle.seek(toFileOffset: 0)
-    try? writeHandle.write(contentsOf: Data(fileString.utf8))
-    try? writeHandle.close()
+    // guard let readHandle = try? FileHandle(forReadingFrom: fileURL) else {
+    //     fatalError("❌ Failed to find \(filePath)")
+    // }
+    // guard let readData = try? readHandle.readToEnd() else {
+    //     fatalError("❌ Failed to find \(filePath)")
+    // }
+    // try? readHandle.close()
+
+    // guard var fileString = String(data: readData, encoding: .utf8) else {
+    //     fatalError("❌Casting Failed readData to String")
+    // }
+    // fileString.insert(contentsOf: insertString, at: fileString.range(of: findingString)?.upperBound ?? fileString.endIndex)
+
+    // guard let writeHandle = try? FileHandle(forWritingTo: fileURL) else {
+    //     fatalError("❌ Failed to find \(filePath)")
+    // }
+    
+    // writeHandle.seek(toFileOffset: 0)
+    // try? writeHandle.write(contentsOf: Data(fileString.utf8))
+    // try? writeHandle.close()
 }
 
 
@@ -94,7 +107,7 @@ func generatePlugin(_ pluginName: String) {
 func registerToConfig(_ pluginName: String) {
     let path = "./Tuist/Config.swift"
     let content = """
-        .local(path: .relativeToRoot("Plugin/\(pluginName)Plugin")),
+    .local(path: .relativeToRoot("Plugin/\(pluginName)Plugin")),\n
 """
     updateFileContent(filePath: path, finding: "[",inserting: content)
     print("✅ Completed register to Config.swift")
