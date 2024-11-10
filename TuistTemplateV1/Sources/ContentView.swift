@@ -9,7 +9,7 @@ public struct ContentView: View {
             .onAppear {
                 var a: String = "3"
                 
-                let data = a as! Int
+                        let data = 3 
                 
                 
             }
