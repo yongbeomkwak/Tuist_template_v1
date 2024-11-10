@@ -8,14 +8,11 @@ public struct ContentView: View {
             .padding()
             .onAppear {
                 var a: String = "3"
-                
-                        let data = 3 
-                
-                
+
+                let data = 3
             }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
