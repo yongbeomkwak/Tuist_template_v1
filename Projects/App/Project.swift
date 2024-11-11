@@ -18,7 +18,7 @@ let project = Project(
             resources: ["Resources/**"],
             scripts: [
                 .swiftLint
-             ],
+            ],
             dependencies: []
         ),
         .target(
