@@ -18,4 +18,9 @@ public extension ProjectDescription.Path {
     static var app: Self {
         return .relativeToRoot("Projects/App")
     }
+    
+    
+    static func + (lhs: Self, rhs: String) -> Self {
+        return Path(stringLiteral: lhs.pathString + rhs)
+    }
 }
