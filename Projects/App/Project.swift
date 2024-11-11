@@ -1,5 +1,6 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import TemplatePlugin
 
 let project = Project(
     name: "TuistTemplateV1",
@@ -14,7 +15,7 @@ let project = Project(
                     "UILaunchStoryboardName": "LaunchScreen.storyboard",
                 ]
             ),
-            sources: ["Sources/**"],
+            sources: .sources,
             resources: ["Resources/**"],
             scripts: [
                 .swiftLint
@@ -27,7 +28,7 @@ let project = Project(
             product: .unitTests,
             bundleId: "io.tuist.TuistTemplateV1Tests",
             infoPlist: .default,
-            sources: ["Tests/**"],
+            sources: .unitTests,
             resources: [],
             dependencies: [.target(name: "TuistTemplateV1")]
         ),
