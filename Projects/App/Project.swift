@@ -17,9 +17,7 @@ let project = Project(
             ),
             sources: .sources,
             resources: .resources,
-            scripts: [
-                .swiftLint
-            ],
+            scripts: generationEnvironment.scripts,
             dependencies: []
         ),
         .target(
