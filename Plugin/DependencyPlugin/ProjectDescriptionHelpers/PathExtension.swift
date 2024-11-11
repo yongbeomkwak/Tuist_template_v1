@@ -12,15 +12,14 @@ public extension ProjectDescription.Path {
     }
     
     static var scripts: Self {
-        return .relativeToRoot("/Scripts")
+        return .relativeToRoot("Scripts")
     }
     
     static var app: Self {
         return .relativeToRoot("Projects/App")
     }
     
-    
     static func + (lhs: Self, rhs: String) -> Self {
-        return Path(stringLiteral: lhs.pathString + rhs)
+        return Path.relativeToRoot(lhs.pathString + rhs)
     }
 }

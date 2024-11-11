@@ -1,4 +1,6 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
+
 
 let project = Project(
     name: "TuistTemplateV1",
@@ -16,7 +18,7 @@ let project = Project(
             sources: ["TuistTemplateV1/Sources/**"],
             resources: ["TuistTemplateV1/Resources/**"],
             scripts: [
-                
+                .swiftLint
              ],
             dependencies: []
         ),

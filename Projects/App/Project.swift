@@ -1,4 +1,5 @@
 //import ProjectDescription
+//import ProjectDescriptionHelpers
 //
 //let project = Project(
 //    name: "TuistTemplateV1",
@@ -16,7 +17,7 @@
 //            sources: ["Sources/**"],
 //            resources: ["Resources/**"],
 //            scripts: [
-//                
+//                .swiftLint
 //             ],
 //            dependencies: []
 //        ),
