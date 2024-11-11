@@ -1,4 +1,12 @@
+#!/usr/bin/swift
 import Foundation
+
+
+func handleSIGINT(_ signal: Int32) { 
+    exit(0)
+}
+
+signal(SIGINT, handleSIGINT) // ctrl+C 입력시 동작 
 
 let fileManager = FileManager.default
 
@@ -45,28 +53,6 @@ func updateFileContent(
     } catch {
         print("❌ Error: \(error)")
     }
-    // let fileURL = URL(fileURLWithPath: filePath)
-    
-    // guard let readHandle = try? FileHandle(forReadingFrom: fileURL) else {
-    //     fatalError("❌ Failed to find \(filePath)")
-    // }
-    // guard let readData = try? readHandle.readToEnd() else {
-    //     fatalError("❌ Failed to find \(filePath)")
-    // }
-    // try? readHandle.close()
-
-    // guard var fileString = String(data: readData, encoding: .utf8) else {
-    //     fatalError("❌Casting Failed readData to String")
-    // }
-    // fileString.insert(contentsOf: insertString, at: fileString.range(of: findingString)?.upperBound ?? fileString.endIndex)
-
-    // guard let writeHandle = try? FileHandle(forWritingTo: fileURL) else {
-    //     fatalError("❌ Failed to find \(filePath)")
-    // }
-    
-    // writeHandle.seek(toFileOffset: 0)
-    // try? writeHandle.write(contentsOf: Data(fileString.utf8))
-    // try? writeHandle.close()
 }
 
 

@@ -11,6 +11,9 @@ setup: # 기본 셋팅 점검 , 린트 설치 ?  , swiftFormat 설치, tuist 설
 tp:
 	swift Scripts/generatePlugin.swift
 
+module:
+	swift Scripts/generateModule.swift
+
 clean:
 	rm -rf **/*.xcodeproj
 	rm -rf *.xcworkspace

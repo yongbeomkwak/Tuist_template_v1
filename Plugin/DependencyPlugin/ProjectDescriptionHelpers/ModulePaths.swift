@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ModuleCategory {
+public enum ModulePaths {
     case feature(Feature)
     case module(Module)
     case domain(Domain)
@@ -8,7 +8,7 @@ public enum ModuleCategory {
     
 }
 
-extension ModuleCategory: ModularPathConvertable {
+extension ModulePaths: ModularPathConvertable {
     public func targetName(type: MoudlarTargetType) -> String {
         switch self {
         case let .feature(module as any ModularPathConvertable),
@@ -20,26 +20,28 @@ extension ModuleCategory: ModularPathConvertable {
     }
 }
 
-public extension ModuleCategory {
+public extension ModulePaths {
     enum Feature: String, ModularPathConvertable {
+        case Base
+        case Base
         case SampleFeature
     }
 }
 
-public extension ModuleCategory {
+public extension ModulePaths {
     enum Module: String, ModularPathConvertable {
         case SampleModule
     }
 }
 
-public extension ModuleCategory {
+public extension ModulePaths {
     enum Domain: String, ModularPathConvertable {
         case Sampleomain
     }
 }
 
 
-public extension ModuleCategory {
+public extension ModulePaths {
     enum UserInterface: String, ModularPathConvertable {
         case DesignSystem
     }

@@ -6,14 +6,14 @@ import TemplatePlugin
 
 // MARK: - Interface
 public extension Target {
-    static func interface(module: ModuleCategory, spec: TargetSpec) -> Target {
+    static func interface(module: ModulePaths, spec: TargetSpec) -> Target {
         spec.with {
             $0.sources = .interface
         }
         .toTarget(with: module.targetName(type: .interface), product: .framework)
     }
 
-    static func interface(module: ModuleCategory, dependencies: [TargetDependency] = []) -> Target {
+    static func interface(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(sources: .interface, dependencies: dependencies)
             .toTarget(with: module.targetName(type: .interface), product: .framework)
     }
@@ -34,7 +34,7 @@ public extension Target {
 // MARK: - Implements
 public extension Target {
     static func implements(
-        module: ModuleCategory,
+        module: ModulePaths,
         product: Product = .staticLibrary,
         spec: TargetSpec
     ) -> Target {
@@ -45,7 +45,7 @@ public extension Target {
     }
 
     static func implements(
-        module: ModuleCategory,
+        module: ModulePaths,
         product: Product = .staticLibrary,
         dependencies: [TargetDependency] = []
     ) -> Target {
@@ -76,14 +76,14 @@ public extension Target {
 
 // MARK: - Testing
 public extension Target {
-    static func testing(module: ModuleCategory, spec: TargetSpec) -> Target {
+    static func testing(module: ModulePaths, spec: TargetSpec) -> Target {
         spec.with {
             $0.sources = .testing
         }
         .toTarget(with: module.targetName(type: .testing), product: .framework)
     }
 
-    static func testing(module: ModuleCategory, dependencies: [TargetDependency] = []) -> Target {
+    static func testing(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(sources: .testing, dependencies: dependencies)
             .toTarget(with: module.targetName(type: .testing), product: .framework)
     }
@@ -103,14 +103,14 @@ public extension Target {
 
 // MARK: - Tests
 public extension Target {
-    static func tests(module: ModuleCategory, spec: TargetSpec) -> Target {
+    static func tests(module: ModulePaths, spec: TargetSpec) -> Target {
         spec.with {
             $0.sources = .unitTests
         }
         .toTarget(with: module.targetName(type: .unitTest), product: .unitTests)
     }
 
-    static func tests(module: ModuleCategory, dependencies: [TargetDependency] = []) -> Target {
+    static func tests(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
             sources: .unitTests
         )
@@ -134,7 +134,7 @@ public extension Target {
 
 // MARK: - Demo
 public extension Target {
-    static func demo(module: ModuleCategory, spec: TargetSpec) -> Target {
+    static func demo(module: ModulePaths, spec: TargetSpec) -> Target {
         spec.with {
             $0.sources = .demoSources
             $0.settings = .settings(
@@ -152,7 +152,7 @@ public extension Target {
         .toTarget(with: module.targetName(type: .demo), product: .app)
     }
 
-    static func demo(module: ModuleCategory, dependencies: [TargetDependency] = []) -> Target {
+    static func demo(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
             infoPlist: .extendingDefault(with: [
                 "UIMainStoryboardFile": "",
