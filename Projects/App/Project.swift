@@ -16,7 +16,7 @@ let project = Project(
                 ]
             ),
             sources: .sources,
-            resources: ["Resources/**"],
+            resources: .resources,
             scripts: [
                 .swiftLint
             ],
