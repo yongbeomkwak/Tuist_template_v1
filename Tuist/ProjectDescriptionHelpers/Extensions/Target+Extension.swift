@@ -14,7 +14,7 @@ extension Target {
             productName: env.name,
             bundleId: "\(env.organizationName)",
             deploymentTargets: env.deploymentTargets,
-            infoPlist: .file(path: "Support/Info.plist"),
+            infoPlist: .projectDefault,
             sources: .sources,
             resources: .resources,
             scripts: generationEnvironment.scripts,
