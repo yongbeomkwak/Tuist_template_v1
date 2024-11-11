@@ -107,7 +107,7 @@ func generatePlugin(_ pluginName: String) {
 func registerToConfig(_ pluginName: String) {
     let path = "./Tuist/Config.swift"
     let content = """
-    \n\t\t.local(path: .relativeToRoot("Plugin/\(pluginName)Plugin")),\n
+    \n\t\t.local(path: .relativeToRoot("Plugin/\(pluginName)Plugin")),
 """
     updateFileContent(filePath: path, finding: "[",inserting: content)
     print("✅ Completed register to Config.swift")
