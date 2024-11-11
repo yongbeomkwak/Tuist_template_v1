@@ -3,7 +3,7 @@ install: # tuist를 이용해서 SPM 설치
 
 generate: # 프로젝트 만들기
 	make install
-	tuist generate
+	TUIST_ENV=DEV TUIST_ROOT_DIR=${PWD} tuist generate
 
 setup: # 기본 셋팅 점검 , 린트 설치 ?  , swiftFormat 설치, tuist 설치 
 	sh Scripts/Setup.sh
