@@ -10,6 +10,11 @@ public extension ProjectDescription.Path {
     static func relativeToDomain(_ path: String) -> Self {
         return .relativeToRoot("Projects/Domains/\(path)")
     }
+    
+    static var scripts: Self {
+        return .relativeToRoot("/Scripts")
+    }
+    
     static var app: Self {
         return .relativeToRoot("Projects/App")
     }

@@ -3,7 +3,7 @@ import ProjectDescription
 
 public extension TargetDependency {
     static func feature(
-        target: ModulePaths.Feature,
+        target: ModuleCategory.Feature,
         type: MoudlarTargetType = .sources
     ) -> TargetDependency {
         .project(
@@ -13,7 +13,7 @@ public extension TargetDependency {
     }
 
     static func userInterface(
-        target: ModulePaths.UserInterface,
+        target: ModuleCategory.UserInterface,
         type: MoudlarTargetType = .sources
     ) -> TargetDependency {
         .project(
@@ -23,7 +23,7 @@ public extension TargetDependency {
     }
     
     static func domain(
-        target: ModulePaths.Domain,
+        target: ModuleCategory.Domain,
         type: MoudlarTargetType = .sources
     ) -> TargetDependency {
         .project(
