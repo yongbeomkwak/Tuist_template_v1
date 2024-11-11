@@ -22,21 +22,20 @@ extension ModulePaths: ModularPathConvertable {
 
 public extension ModulePaths {
     enum Feature: String, ModularPathConvertable {
-        case Base
-        case Base
-        case SampleFeature
+        case BaseFeature
+        
     }
 }
 
 public extension ModulePaths {
     enum Module: String, ModularPathConvertable {
-        case SampleModule
+        case ThirdPartyLibModule
     }
 }
 
 public extension ModulePaths {
     enum Domain: String, ModularPathConvertable {
-        case Sampleomain
+        case BaseDomain
     }
 }
 

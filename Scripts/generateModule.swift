@@ -14,6 +14,22 @@ enum LayerType: String {
     case domain = "Domain"
     case module = "Module"
     case userInterface = "UserInterface"
+
+    init?(_ n: Int) {
+        switch n {
+        case 1:
+            self = .feature
+        case 2:
+            self = .domain
+        case 3:
+            self = .module
+        case 4:
+            self = .userInterface
+        default:
+            return nil
+        }
+    }
+
 }
 
 enum MoudlarTargetType: String {
@@ -33,8 +49,8 @@ func registerModuleDependency() {
     registerModulePaths()
     makeProjectDirectory()
 
-    let layerPrefix = layer.rawValue.lowercased()
-    let moduleEnum = ".\(layerPrefix)(.\(moduleName))"
+    let layerPrefix = layer == .userInterface ? "userInterface" : layer.rawValue.lowercased()
+    let moduleEnum =  layer == .userInterface ? ".userInterface(.\(moduleName))"  :".\(layerPrefix)(.\(moduleName))"
     var targetString = "[\n"
     if hasInterface {
         makeScaffold(target: .interface)
@@ -122,6 +138,7 @@ let project = Project.module(
         path: currentPath + "Projects/\(layer.rawValue)s/\(moduleName)/Project.swift",
         content: projectSwift
     )
+
     #warning("TODO: Layer 이름(디렉토리 이름)과 ModulePaths 이름이 다르기에 경로에 Layer를 사용하는 부분들은 Projects/{이름}s 로 뒤에 s를 붙임")
 }
 
@@ -165,17 +182,20 @@ func updateFileContent(
         try fileString.write(to: fileURL, atomically: true, encoding: .utf8)
     } catch {
         print("❌ Error: \(error)")
-    } 
+    }
 }
 
 // MARK: - ✅ Entry point
 
-print("레이어 이름을 입력해주세요!\n(Feature | Domain | Module | UserInterface)", terminator: " : ")
-let layerInput = readLine()
+print("레이어에 해당하는 숫자를 입력해주세요!\n(1. Feature | 2. Domain | 3. Module | 4. UserInterface)", terminator: " : ")
+
+let inputNumber = readLine()
+
 guard
-    let layerInput,
-    !layerInput.isEmpty,
-    let layerUnwrapping = LayerType(rawValue: layerInput)
+    let inputNumber,
+    let optionNumber = Int(inputNumber),
+    1...4 ~= optionNumber,
+    let layerUnwrapping = LayerType(optionNumber)
 else {
     print("입력이 비었거나 잘못되었어요!")
     exit(1)
@@ -190,7 +210,7 @@ guard let moduleNameUnwrapping = moduleInput, !moduleNameUnwrapping.isEmpty else
     exit(1)
 }
 
-var moduleName = moduleNameUnwrapping
+var moduleName = optionNumber == 4 ?  moduleNameUnwrapping  : moduleNameUnwrapping + layer.rawValue // 유저인터페이스만 layer 안붙힘
 print("모듈 이름: \(moduleName)\n")
 
 print("'Interface' Target을 포함하나요? (y\\n, default = n)", terminator: " : ")
@@ -241,8 +261,6 @@ struct Bash: CommandExecuting {
             throw BashError.commandNotFound(name: command)
         }
         bashCommand = bashCommand.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-
-        print(bashCommand)
         return bashCommand
     }
 

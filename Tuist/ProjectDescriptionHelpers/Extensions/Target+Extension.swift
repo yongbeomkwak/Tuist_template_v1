@@ -4,6 +4,45 @@ import ProjectDescription
 import ConfigurationPlugin
 import TemplatePlugin
 
+// MARK: - Project
+
+extension Target {
+    static let projectTarget: Target = .target(
+            name: env.name,
+            destinations: [.iPhone],
+            product: .app,
+            productName: env.name,
+            bundleId: "\(env.organizationName)",
+            deploymentTargets: env.deploymentTargets,
+            infoPlist: .file(path: "Support/Info.plist"),
+            sources: .sources,
+            resources: .resources,
+            scripts: generationEnvironment.scripts,
+            dependencies: [
+                .feature(target: .BaseFeature),
+                .domain(target: .BaseDomain),
+                .module(target: .ThirdPartyLibModule),
+                .userInterface(target: .DesignSystem)
+            ],
+            settings: .settings(base: .makeProjectSetting(), configurations: .default, defaultSettings: .recommended),
+            environmentVariables: [:] // 환경변수 설정
+        )
+    
+    static let projectTestTarget: Target = .target(
+            name: "\(env.name)Tests",
+            destinations: [.iPhone],
+            product: .unitTests,
+            bundleId: "\(env.organizationName)Tests",
+            deploymentTargets: env.deploymentTargets,
+            infoPlist: .default,
+            sources: .unitTests,
+            dependencies: [
+                .target(name: env.name)
+            ]
+        )
+}
+
+
 // MARK: - Interface
 public extension Target {
     static func interface(module: ModulePaths, spec: TargetSpec) -> Target {
@@ -201,40 +240,4 @@ public extension Target {
         )
         .toTarget(with: "\(name)Demo", product: .app)
     }
-}
-
-
-// MARK: - Project
-
-extension Target {
-    
-    
-    static let projectTarget: Target = .target(
-            name: env.name,
-            destinations: [.iPhone],
-            product: .app,
-            productName: env.name,
-            bundleId: "\(env.organizationName)",
-            deploymentTargets: env.deploymentTargets,
-            infoPlist: .file(path: "Support/Info.plist"),
-            sources: .sources,
-            resources: .resources,
-            scripts: generationEnvironment.scripts,
-            dependencies: [],
-            settings: .settings(base: .makeProjectSetting(), configurations: .default, defaultSettings: .recommended),
-            environmentVariables: [:] // 환경변수 설정
-        )
-    
-    static let projectTestTarget: Target = .target(
-            name: "\(env.name)Tests",
-            destinations: [.iPhone],
-            product: .unitTests,
-            bundleId: "\(env.organizationName)Tests",
-            deploymentTargets: env.deploymentTargets,
-            infoPlist: .default,
-            sources: .unitTests,
-            dependencies: [
-                .target(name: env.name)
-            ]
-        )
 }
