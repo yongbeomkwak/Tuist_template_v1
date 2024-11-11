@@ -11,14 +11,14 @@ public extension TargetDependency {
             path: .relativeToFeature(target.rawValue)
         )
     }
-
-    static func userInterface(
-        target: ModuleCategory.UserInterface,
+    
+    static func module(
+        target: ModuleCategory.Module,
         type: MoudlarTargetType = .sources
     ) -> TargetDependency {
         .project(
             target: target.targetName(type: type),
-            path: .relativeToUserInterfaces(target.rawValue)
+            path: .relativeToModule(target.rawValue)
         )
     }
     
@@ -31,4 +31,15 @@ public extension TargetDependency {
             path: .relativeToDomain(target.rawValue)
         )
     }
+
+    static func userInterface(
+        target: ModuleCategory.UserInterface,
+        type: MoudlarTargetType = .sources
+    ) -> TargetDependency {
+        .project(
+            target: target.targetName(type: type),
+            path: .relativeToUserInterfaces(target.rawValue)
+        )
+    }
+
 }

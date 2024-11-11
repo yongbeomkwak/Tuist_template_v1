@@ -2,16 +2,19 @@ import Foundation
 
 public enum ModuleCategory {
     case feature(Feature)
-    case userInterface(UserInterface)
+    case module(Module)
     case domain(Domain)
+    case userInterface(UserInterface)
+    
 }
 
 extension ModuleCategory: ModularPathConvertable {
     public func targetName(type: MoudlarTargetType) -> String {
         switch self {
         case let .feature(module as any ModularPathConvertable),
-            let .userInterface(module as any ModularPathConvertable),
-            let .domain(module as any ModularPathConvertable):
+            let .module(module as any ModularPathConvertable),
+            let .domain(module as any ModularPathConvertable),
+            let .userInterface(module as any ModularPathConvertable):
             return module.targetName(type: type)
         }
     }
@@ -19,13 +22,19 @@ extension ModuleCategory: ModularPathConvertable {
 
 public extension ModuleCategory {
     enum Feature: String, ModularPathConvertable {
-        case BaseFeature
+        case SampleFeature
+    }
+}
+
+public extension ModuleCategory {
+    enum Module: String, ModularPathConvertable {
+        case SampleModule
     }
 }
 
 public extension ModuleCategory {
     enum Domain: String, ModularPathConvertable {
-        case BaseDomain
+        case Sampleomain
     }
 }
 
