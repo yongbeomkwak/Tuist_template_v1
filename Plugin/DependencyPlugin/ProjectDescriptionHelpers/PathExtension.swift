@@ -14,7 +14,7 @@ public extension ProjectDescription.Path {
     }
     
     static func relativeToUserInterfaces(_ path: String) -> Self {
-        return .relativeToRoot("Projects/UsertInterfaces/\(path)")
+        return .relativeToRoot("Projects/UserInterfaces/\(path)")
     }
     
     static var scripts: Self {

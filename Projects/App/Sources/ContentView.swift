@@ -1,4 +1,5 @@
 import SwiftUI
+import DesignSystem
 
 public struct ContentView: View {
     public init() {}
@@ -6,6 +7,7 @@ public struct ContentView: View {
     public var body: some View {
         Text("Hello, World!")
             .padding()
+            .background(DesignSystemAsset.Color.primaryColor.swiftUIColor)
     }
 }
 
