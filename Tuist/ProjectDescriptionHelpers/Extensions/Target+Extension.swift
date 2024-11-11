@@ -182,22 +182,14 @@ public extension Target {
                 configurations: .default,
                 defaultSettings: spec.settings?.defaultSettings ?? .recommended
             )
-            $0.infoPlist = spec.infoPlist ?? .extendingDefault(with: [
-                "UIMainStoryboardFile": "",
-                "UILaunchStoryboardName": "LaunchScreen",
-                "ENABLE_TESTS": .boolean(true),
-            ])
+            $0.infoPlist = spec.infoPlist ?? .default
         }
         .toTarget(with: module.targetName(type: .demo), product: .app)
     }
 
     static func demo(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
-            infoPlist: .extendingDefault(with: [
-                "UIMainStoryboardFile": "",
-                "UILaunchStoryboardName": "LaunchScreen",
-                "ENABLE_TESTS": .boolean(true),
-            ]),
+            infoPlist: .demoDefulat,
             sources: .demoSources,
             settings: .settings(
                 base: ["OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"],
@@ -216,22 +208,14 @@ public extension Target {
                 configurations: .default,
                 defaultSettings: spec.settings?.defaultSettings ?? .recommended
             )
-            $0.infoPlist = spec.infoPlist ?? .extendingDefault(with: [
-                "UIMainStoryboardFile": "",
-                "UILaunchStoryboardName": "LaunchScreen",
-                "ENABLE_TESTS": .boolean(true),
-            ])
+            $0.infoPlist = spec.infoPlist ?? .demoDefulat
         }
         .toTarget(with: "\(name)Demo", product: .app)
     }
 
     static func demo(name: String, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
-            infoPlist: .extendingDefault(with: [
-                "UIMainStoryboardFile": "",
-                "UILaunchStoryboardName": "LaunchScreen",
-                "ENABLE_TESTS": .boolean(true),
-            ]),
+            infoPlist: .demoDefulat,
             sources: .demoSources,
             settings: .settings(
                 base: ["OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"],
