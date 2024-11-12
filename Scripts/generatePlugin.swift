@@ -14,7 +14,7 @@ let fileManager = FileManager.default
 func makeDirectory(_ path: String) {
     
     do {
-        try fileManager.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
+        try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
     } catch {
         fatalError("❌ failed to create directory: \(path)")
     }
