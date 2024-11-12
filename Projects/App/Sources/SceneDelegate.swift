@@ -14,7 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         vc.view.backgroundColor = .orange
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
-
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
@@ -28,13 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {}
 
     // MARK: - Handling DeepLink
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        
-    }
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {}
 
     // MARK: - Handling UniversalLink
-    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-
-    }
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {}
 }
-
