@@ -151,7 +151,8 @@ public extension Target {
 
     static func tests(module: ModulePaths, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
-            sources: .unitTests
+            sources: .unitTests,
+            dependencies: dependencies
         )
         .toTarget(with: module.targetName(type: .unitTest), product: .unitTests)
     }
@@ -165,7 +166,8 @@ public extension Target {
 
     static func tests(name: String, dependencies: [TargetDependency] = []) -> Target {
         TargetSpec(
-            sources: .unitTests
+            sources: .unitTests,
+            dependencies: dependencies
         )
         .toTarget(with: "\(name)Tests", product: .unitTests)
     }
@@ -191,6 +193,7 @@ public extension Target {
         TargetSpec(
             infoPlist: .demoDefulat,
             sources: .demoSources,
+            dependencies: dependencies,
             settings: .settings(
                 base: ["OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"],
                 configurations: .default
@@ -217,6 +220,7 @@ public extension Target {
         TargetSpec(
             infoPlist: .demoDefulat,
             sources: .demoSources,
+            dependencies: dependencies,
             settings: .settings(
                 base: ["OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"],
                 configurations: .default
